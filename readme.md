@@ -22,7 +22,7 @@ class ExampleTest extends FlatSpec with ParallelTestExecution{
 
 This way tests in suite will be also executed in parallel. Number of concurrent tests within suite can be configured with `-P` param passed to ScalaTest runner. Unfortunately in newest versions of SBT this param is no longer supported. Without that setting default thread limit (2 * number of CPU threads) is applied. This limit applies to all tests in build so even if we pair it with SBT suite concurrency we cannot exceed this limitation nor configure lower limit fe. for tests that are more burdening for the system under test.
 
-This issue was resolved by @drieks in his project [PageObject](https://github.com/agido/pageobject). He created an extension to ParallelTestExecution which allows to set number of threads per test suite. Based on his code I've created simplified solution which is limited to just one trait and can be used as replacement of `ParallelTestEcexution`:
+This issue was resolved by [@drieks](https://github.com/drieks) in his project [PageObject](https://github.com/agido/pageobject). He created an extension to ParallelTestExecution which allows to set number of threads per test suite. Based on his code I've created simplified solution which is limited to just one trait and can be used as replacement of `ParallelTestEcexution`:
 
 ```scala
 trait FixedThreadPoolParallelExecution extends SuiteMixin with ParallelTestExecution{ this: Suite =>
